@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/AjuntamentdeBarcelona/decidim
-  revision: cf18d07098598452b4d6bc0a19c6545689a326a2
-  branch: feature/pb04-budget-scope-list
+  revision: 4ef94a55ee4415c199882a263e1de395ebdec36b
+  branch: feature/pb05-budgets-omnipresent-progress-box
   specs:
     decidim (0.24.2)
       decidim-accountability (= 0.24.2)
