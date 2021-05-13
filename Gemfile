@@ -5,7 +5,7 @@ FEATURE_BRANCHES = {
   pb05: "feature/pb05-budgets-omnipresent-progress-box"
 }.freeze
 
-DECIDIM_VERSION = { git: "https://github.com/AjuntamentdeBarcelona/decidim", branch: FEATURE_BRANCHES[:pb04] }.freeze
+DECIDIM_VERSION = { git: "https://github.com/AjuntamentdeBarcelona/decidim", branch: FEATURE_BRANCHES[:pb05] }.freeze
 
 ruby '2.7.2'
 
