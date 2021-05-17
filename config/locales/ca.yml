@@ -124,6 +124,11 @@ ca:
             time_and_date: Data i hora
             timestamp: Segell
             hash: Hash
+    budgets:
+      budgets_list:
+        show: Mostra
+        progress: Finalitza el teu vot
+        vote: Vota
     devise:
       omniauth_registrations:
         new:
