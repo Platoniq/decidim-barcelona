@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/AjuntamentdeBarcelona/decidim
-  revision: cf18d07098598452b4d6bc0a19c6545689a326a2
+  revision: 35c5f3f3aa3390829b692db068f7a89ec7b5513f
   branch: feature/pb04-budget-scope-list
   specs:
     decidim (0.24.2)
