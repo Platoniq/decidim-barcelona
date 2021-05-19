@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/AjuntamentdeBarcelona/decidim
-  revision: 00483861444ccbc7bdf9cc1625fe5cfb9c31a574
+  revision: b5af50620765889f63b811131cb7a56bf7f14ea3
   branch: feature/pb05-budgets-omnipresent-progress-box
   specs:
     decidim (0.24.2)
