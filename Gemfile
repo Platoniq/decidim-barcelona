@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 FEATURE_BRANCHES = {
   pb04: "feature/pb04-budget-scope-list",
-  pb05: "feature/pb05-budgets-omnipresent-progress-box"
+  pb05: "feature/pb05-alt"
 }.freeze
 
 DECIDIM_VERSION = { git: "https://github.com/AjuntamentdeBarcelona/decidim", branch: FEATURE_BRANCHES[:pb05] }.freeze
