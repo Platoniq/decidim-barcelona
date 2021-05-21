@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/AjuntamentdeBarcelona/decidim
-  revision: ccb79ca2dd88b282923e70a8c6b1f0e10d839f9f
+  revision: de00df54dc93ef6d30f17ff3c33924d27403b3b4
   branch: feature/pb05-alt
   specs:
     decidim (0.24.2)
