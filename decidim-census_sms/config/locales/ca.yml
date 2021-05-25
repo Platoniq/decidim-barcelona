@@ -1,0 +1,32 @@
+---
+ca:
+  activemodel:
+    attributes:
+      authorization:
+        date_of_birth: Data de naixement
+        document_number: Número de document
+        document_type: Tipus de document
+        mobile_phone_number: Número de telèfon mòbil
+        postal_code: Codi postal
+        scope_id: Districte
+        tos_acceptance: En registrar-te acceptes els <a class="link" href="%{tos_path}" target="_blank">Termes i Condicions</a>
+  decidim:
+    authorization_handlers:
+      census_sms_authorization_handler:
+        explanation: El padró + SMS #TODO
+        name: El padró + SMS #TODO
+    census_sms:
+      verification:
+        authorizations:
+          create:
+            error: Error #TODO 
+          form:
+            date_select:
+              day: Dia
+              month: Mes
+              year: Any
+            scope_prompt: Selecciona el teu districte
+          new:
+            instructions: Verifica't amb el Padró #TODO
+            send: Enviar #TODO
+            title: Verifica't amb el Padró #TODO

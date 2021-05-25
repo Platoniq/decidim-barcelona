@@ -1,0 +1,100 @@
+# frozen_string_literal: true
+
+module Decidim
+  module CensusSms
+    module Verification
+      class AuthorizationsController < Decidim::ApplicationController
+        include Decidim::Verifications::Renewable
+
+        helper_method :authorization, :tos_path
+
+        def new
+          enforce_permission_to :create, :authorization, authorization: authorization
+
+          @form = AuthorizationForm.new
+        end
+
+        def create
+          enforce_permission_to :create, :authorization, authorization: authorization
+
+          @form = AuthorizationForm.from_params( params.merge(user: current_user))
+
+          Decidim::Verifications::PerformAuthorizationStep.call(authorization, @form) do
+            on(:ok) do
+              flash[:notice] = t("authorizations.create.success", scope: "decidim.census_sms.verification")
+              authorization_method = Decidim::Verifications::Adapter.from_element(authorization.name)
+              redirect_to authorization_method.resume_authorization_path(redirect_url: redirect_url)
+            end
+            on(:invalid) do
+              flash.now[:alert] = t("authorizations.create.error", scope: "decidim.census_sms.verification")
+              render :new
+            end
+          end
+        end
+
+        def edit
+          enforce_permission_to :update, :authorization, authorization: authorization
+
+          @form = Decidim::Verifications::Sms::ConfirmationForm.from_params(params)
+        end
+
+        def update
+          enforce_permission_to :update, :authorization, authorization: authorization
+
+          @form = Decidim::Verifications::Sms::ConfirmationForm.from_params(params)
+
+          Decidim::Verifications::ConfirmUserAuthorization.call(authorization, @form, session) do
+            on(:ok) do
+              flash[:notice] = t("authorizations.update.success", scope: "decidim.census_sms.verification")
+
+              if redirect_url
+                redirect_to redirect_url
+              else
+                redirect_to decidim_verifications.authorizations_path
+              end
+            end
+
+            on(:invalid) do
+              flash.now[:alert] = t("authorizations.update.error", scope: "decidim.census_sms.verification")
+              render :edit
+            end
+          end
+        end
+
+        def destroy
+          enforce_permission_to :destroy, :authorization, authorization: authorization
+
+          authorization.destroy!
+          flash[:notice] = t("authorizations.destroy.success", scope: "decidim.census_sms.verification")
+
+          redirect_to action: :new
+        end
+
+        private
+
+        def authorization
+          @authorization ||= Decidim::Authorization.find_or_initialize_by(
+            user: current_user,
+            name: "census_sms"
+          )
+        end
+
+        def handler
+          @handler ||= Decidim::AuthorizationHandler.handler_for(handler_name, handler_params)
+        end
+
+        def handler_params
+          (params[:authorization_handler] || {}).merge(user: current_user)
+        end
+
+        def handler_name
+          params[:handler] || params.dig(:authorization_handler, :handler_name)
+        end
+
+        def tos_path
+          @terms_and_conditions_page_path ||= decidim.page_path(Decidim::StaticPage.find_by(slug: "terms-and-conditions", organization: current_organization))
+        end
+      end
+    end
+  end
+end

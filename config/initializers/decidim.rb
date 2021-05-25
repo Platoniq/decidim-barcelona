@@ -46,3 +46,13 @@ Decidim::Verifications.register_workflow(:census16_authorization_handler) do |au
   auth.time_between_renewals = 1.day
   auth.metadata_cell = "census16_authorization_metadata"
 end
+
+Decidim::Verifications.register_workflow(:census_sms_authorization_handler) do |auth|
+  auth.engine = Decidim::CensusSms::Verification::Engine
+  auth.renewable = true
+  auth.time_between_renewals = 1.day
+
+  auth.options do |options|
+    options.attribute :scope_id, type: :integer, required: false
+  end
+end
