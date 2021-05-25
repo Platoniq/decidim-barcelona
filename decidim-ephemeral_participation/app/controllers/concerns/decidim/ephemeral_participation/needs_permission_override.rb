@@ -54,13 +54,33 @@ module Decidim
           end
         end
 
+        # TODO: move to presenter
         def unauthorized_ephemeral_participant_message
-          t(
+          return unverified_ephemeral_participant_message unless current_user.verified_ephemeral_participant?
+
+          I18n.t(
             "decidim.ephemeral_participation.actions.unauthorized",
             link: (
               helpers.link_to(
                 I18n.t("decidim.ephemeral_participation.actions.unauthorized_link"),
                 decidim_ephemeral_participation.edit_ephemeral_participant_path(current_user),
+              )
+            )
+          ).html_safe
+        end
+
+        # TODO: move to presenter
+        def unverified_ephemeral_participant_message
+          t(
+            "decidim.ephemeral_participation.actions.unverified",
+            link: (
+              helpers.link_to(
+                I18n.t("decidim.ephemeral_participation.actions.unverified_link"),
+                (
+                  Decidim::Verifications::Adapter
+                  .from_element(current_user.ephemeral_participation_data["authorization_name"])
+                  .root_path(redirect_url: current_user.ephemeral_participation_data["redirect_url"])
+                ),
               )
             )
           ).html_safe

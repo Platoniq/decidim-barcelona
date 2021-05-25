@@ -24,8 +24,10 @@ ca:
       ephemerable: Permet participació directe
     ephemeral_participation:
       actions:
-        unauthorized: "Per poder participar, cal que estiguis verificada: %{link}"
-        unauthorized_link: Completa el procés de verificació aquí.
+        unauthorized: "No tens permís per realitzar aquesta acció: %{link}"
+        unauthorized_link: Completa el teu registre aquí.
+        unverified: "Per poder participar, cal que estiguis verificada: %{link}"
+        unverified_link: Completa el procés de verificació aquí.
       login_modal:
         button: Vull participar sense registrar-me
         help: Fes servir aquesta opció per una particiació puntual
@@ -38,9 +40,6 @@ ca:
         destroy: S'ha cancel·lat la participació sense registre
         submit: Envia
         title: Completa el teu perfil d'usuari per simplificar la teva participació en el futur
-      ephemeral_participable:
-        unverified: "Per poder participar, cal que estiguis verificada: %{link}"
-        unverified_link: Completa el procés de verificació aquí.
     components:
       budgets:
         settings:

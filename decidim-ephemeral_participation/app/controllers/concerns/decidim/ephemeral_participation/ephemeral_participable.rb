@@ -29,6 +29,7 @@ module Decidim
           return if ephemeral_participant_session_remmaining_time.positive?
 
           # TODO: move to command
+          # TODO: handle verification conflicts
           current_user.invalidate_all_sessions!
           current_user.destroy unless current_user.verified_ephemeral_participant?
           sign_out(current_user)
@@ -60,26 +61,13 @@ module Decidim
           request.path == Decidim::EphemeralParticipation::Engine.routes.url_helpers.edit_ephemeral_participant_path(current_user)
         end
 
-        # IDEAS:
-        #
-        # 1)
-        # - Update user dropdown menu with new options:
-        #   - session remaining time
-        #   - close session link
-        # - Add flash message when ephemeral_participant is not authorized with link to authorize
-        # - Add link to complete registration to unauthorized flash message
-        #
-        # 2)
-        # - Substitute user dropdown menu with [✋ Complete your registration!] button
-        # - ?
-        # - Profit
-        #
+        # TODO: move to presenter
         def unverified_ephemeral_participant_message
-          t(
-            "decidim.ephemeral_participation.ephemeral_participable.unverified",
+          I18n.t(
+            "decidim.ephemeral_participation.actions.unverified",
             link: (
               helpers.link_to(
-                I18n.t("decidim.ephemeral_participation.ephemeral_participable.unverified_link"),
+                I18n.t("decidim.ephemeral_participation.actions.unverified_link"),
                 (
                   Decidim::Verifications::Adapter
                   .from_element(current_user.ephemeral_participation_data["authorization_name"])

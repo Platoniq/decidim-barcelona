@@ -48,7 +48,8 @@ module Decidim
       def destroy
         enforce_permission_to(:destroy, :ephemeral_participant, current_user: current_user)
 
-        # TODO: move to command && handle auth conflicts
+        # TODO: move to command
+        # TODO: handle verification conflicts
         current_user.invalidate_all_sessions!
         current_user.destroy unless current_user.verified_ephemeral_participant?
         sign_out(current_user)

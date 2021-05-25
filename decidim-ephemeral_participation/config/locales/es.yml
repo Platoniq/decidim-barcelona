@@ -24,8 +24,10 @@ es:
       ephemerable: Permite participación directa
     ephemeral_participation:
       actions:
-        unauthorized: "Para poder participar, es necesario que estés verificada: %{link}"
-        unauthorized_link: Completa el proceos de verificación aquí.
+        unauthorized: "No tienes permisos para realizar esta acción: %{link}"
+        unauthorized_link: Completa tu registro aquí.
+        unverified: "Para poder participar, es necesario que estés verificada: %{link}"
+        unverified_link: Completa el proceos de verificación aquí.
       login_modal:
         button: Quiero participar sin registrarme
         help: Utiliza esta opción para una particiación puntual
@@ -38,9 +40,6 @@ es:
         destroy: Se ha cancelado la participación sin registro
         submit: Enviar
         title: Completa tu perfil de usuario para simplificar tu participación en el futuro
-      ephemeral_participable:
-        unverified: "Para poder participar, es necesario que estés verificada: %{link}"
-        unverified_link: Completa el proceos de verificación aquí.
     components:
       budgets:
         settings:

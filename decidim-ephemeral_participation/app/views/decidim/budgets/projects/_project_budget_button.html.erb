@@ -15,7 +15,7 @@
           class: "button expanded button--sc success",
           "aria-label": t(".added_descriptive", resource_name: translated_attribute(project.title))
         ) %>
-  <% elsif current_user.present? && !current_user.ephemeral_participant? %>
+  <% elsif current_user.present? && (!current_user.ephemeral_participant? || current_user.verified_ephemeral_participant?) %>
     <%= action_authorized_button_to(
           "vote",
           t(".add"),
@@ -32,7 +32,7 @@
           class: "button expanded button--sc",
           "aria-label": t(".add_descriptive", resource_name: translated_attribute(project.title))
         ) %>
-  <% elsif current_user.present? && !current_user.verified_ephemeral_participant? %>
+  <% elsif current_user.present? && (current_user.ephemeral_participant? && !current_user.verified_ephemeral_participant?) %>
     <%= link_to t(".add"), Decidim::Verifications::Adapter
                   .from_element(current_user.ephemeral_participation_data["authorization_name"])
                   .root_path(redirect_url: current_user.ephemeral_participation_data["redirect_url"]),
