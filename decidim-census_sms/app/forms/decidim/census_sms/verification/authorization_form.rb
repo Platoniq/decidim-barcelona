@@ -27,13 +27,13 @@ module Decidim
           )
         end
 
-         # The verification metadata to validate in the next step.
-         def verification_metadata
+        # The verification metadata to validate in the next step.
+        def verification_metadata
           {
             verification_code: verification_code,
             code_sent_at: Time.current
           }
-        end
+       end
 
         # When there's a phone number, sanitize it allowing only numbers and +.
         def mobile_phone_number
@@ -41,7 +41,7 @@ module Decidim
 
           super.gsub(/[^+0-9]/, "")
         end
-        
+
         private
 
         def sms_gateway

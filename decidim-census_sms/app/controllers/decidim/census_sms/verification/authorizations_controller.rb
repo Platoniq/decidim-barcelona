@@ -17,7 +17,7 @@ module Decidim
         def create
           enforce_permission_to :create, :authorization, authorization: authorization
 
-          @form = AuthorizationForm.from_params( params.merge(user: current_user))
+          @form = AuthorizationForm.from_params(params.merge(user: current_user))
 
           Decidim::Verifications::PerformAuthorizationStep.call(authorization, @form) do
             on(:ok) do
