@@ -49,7 +49,6 @@ module Decidim
         end
 
         def verification_code
-          byebug
           return unless sms_gateway
           return @verification_code if defined?(@verification_code)
 
