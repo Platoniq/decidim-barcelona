@@ -36,13 +36,12 @@ ca:
           edit:
             send: Envia'm un SMS
             title: Sol·licita el teu codi de verificació
-          form:
+          new:
             date_select:
               day: Dia
               month: Mes
               year: Any
             scope_prompt: Selecciona el teu districte
-          new:
             send: Envia'm un SMS
             title: Sol·licita el teu codi de verificació
           update:
