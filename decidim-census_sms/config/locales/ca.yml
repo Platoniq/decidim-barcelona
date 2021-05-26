@@ -30,11 +30,11 @@ ca:
       verification:
         authorizations:
           create:
-            error: Error #TODO 
+            error: S'ha produit un error en crear l'autorització
+            success: Has completat el primer pas per obtenir l'autorització
           edit:
-            instructions: TODO #TODO
-            title: TODO #TODO
-            send: Enviar
+            send: Envia'm un SMS
+            title: Sol·licita el teu codi de verificació
           form:
             date_select:
               day: Dia
@@ -42,6 +42,8 @@ ca:
               year: Any
             scope_prompt: Selecciona el teu districte
           new:
-            instructions: Verifica't amb el Padró #TODO
-            send: Enviar #TODO
-            title: Verifica't amb el Padró #TODO
+            send: Envia'm un SMS
+            title: Sol·licita el teu codi de verificació
+          update:
+            error: El codi de verificació que has introduït no coincideix amb el nostre. Si us plau, revisa l'SMS que t'hem enviat.
+            success: Felicitats. T'has verificat correctament.
