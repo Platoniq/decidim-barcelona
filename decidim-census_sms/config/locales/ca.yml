@@ -34,16 +34,16 @@ ca:
             error: S'ha produit un error en crear l'autorització
             success: Has completat el primer pas per obtenir l'autorització
           edit:
-            send: Envia'm un SMS
-            title: Sol·licita el teu codi de verificació
+            send: Verifica't
+            title: Introdueix el codi que has rebut per SMS
           new:
             date_select:
               day: Dia
               month: Mes
               year: Any
             scope_prompt: Selecciona el teu districte
-            send: Envia'm un SMS
-            title: Sol·licita el teu codi de verificació
+            send: Verifica't
+            title: Verifica't amb el Padró
           update:
             error: El codi de verificació que has introduït no coincideix amb el nostre. Si us plau, revisa l'SMS que t'hem enviat.
             success: Felicitats. T'has verificat correctament.
