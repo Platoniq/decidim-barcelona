@@ -60,7 +60,8 @@ module Decidim
       end
 
       def allowed_to_update_ephemeral_participant?
-        user && user == context[:current_user]
+        user && user == context[:current_user] &&
+          Decidim::Verifications::Conflict.where(current_user: current_user).none?
       end
 
       def update_profile?
@@ -85,6 +86,7 @@ module Decidim
 
       def allowed_ephemeral_participation?
         return true if browsing_public_pages?
+        return true if changing_locales?
         return true if user && user.verified_ephemeral_participant? && ephemeral_participation_permission_action?
 
         false
@@ -92,6 +94,12 @@ module Decidim
 
       def browsing_public_pages?
         permission_action.scope == :public && [:read, :list].include?(permission_action.action)
+      end
+
+      def changing_locales?
+        permission_action.action == :create &&
+          permission_action.scope == :public &&
+            permission_action.subject == :locales
       end
 
       def ephemeral_participation_permission_action?

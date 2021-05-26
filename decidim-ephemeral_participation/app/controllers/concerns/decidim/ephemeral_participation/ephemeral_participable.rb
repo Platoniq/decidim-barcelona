@@ -28,14 +28,13 @@ module Decidim
         def check_ephemeral_participant_session_expired
           return if ephemeral_participant_session_remmaining_time.positive?
 
-          # TODO: move to command
-          # TODO: handle verification conflicts
-          current_user.invalidate_all_sessions!
-          current_user.destroy unless current_user.verified_ephemeral_participant?
-          sign_out(current_user)
-          flash[:notice] = I18n.t("destroy", scope: "decidim.ephemeral_participation.ephemeral_participants")
+          DestroyEphemeralParticipant.call(request, current_user) do
+            on(:ok) do
+              flash[:notice] = I18n.t("destroy", scope: "decidim.ephemeral_participation.ephemeral_participants")
 
-          redirect_to(request.path)
+              redirect_to(Decidim::Core::Engine.routes.url_helpers.root_path)
+            end
+          end
         end
 
         def ephemeral_participant_session_remmaining_time

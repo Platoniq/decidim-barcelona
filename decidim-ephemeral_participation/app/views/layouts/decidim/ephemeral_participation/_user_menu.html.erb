@@ -7,15 +7,17 @@
     )
   %>
 </li>
-<li>
-  <%=
-    link_to(
-      I18n.t("complete_registration", scope: "decidim.ephemeral_participation.user_menu"),
-      decidim_ephemeral_participation.edit_ephemeral_participant_path(current_user),
-      tabindex: "-1",
-    )
-  %>
-</li>
+<% if Decidim::Verifications::Conflict.where(current_user: current_user).none? %>
+  <li>
+    <%=
+      link_to(
+        I18n.t("complete_registration", scope: "decidim.ephemeral_participation.user_menu"),
+        decidim_ephemeral_participation.edit_ephemeral_participant_path(current_user),
+        tabindex: "-1",
+      )
+    %>
+  </li>
+<% end %>
 <li>
   <%=
     link_to(

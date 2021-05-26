@@ -28,7 +28,7 @@ Decidim::Verifications.register_workflow(:census) do |workflow|
 end
 ```
 
-
+**IMPORANT** The module assumes the verification method is making users accept the TOS version.
 
 ## Contributing
 

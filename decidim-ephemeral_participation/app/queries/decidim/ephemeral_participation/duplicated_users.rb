@@ -5,7 +5,7 @@ module Decidim
     class DuplicatedUsers < Rectify::Query
       def initialize(organization:, excluding: nil, where_clause:)
         @organization = organization
-        @excluding    = excluding.to_a.map(&:id)
+        @excluding    = Array.wrap(excluding).compact.map(&:id)
         @where_clause = where_clause
       end
 

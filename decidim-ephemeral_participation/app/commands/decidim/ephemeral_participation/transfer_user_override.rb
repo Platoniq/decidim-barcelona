@@ -12,15 +12,11 @@ module Decidim
 
         def update_managed_user
           if managed_user.ephemeral_participant?
-            update_conflicting_users
+            update_old_ephemeral_participant
+            update_new_ephemeral_participant
           else
             update_regular_managed_user
           end
-        end
-
-        def update_conflicting_users
-          update_old_ephemeral_participant
-          update_new_ephemeral_participant
         end
 
         def update_old_ephemeral_participant
