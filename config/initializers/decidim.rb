@@ -33,7 +33,7 @@ Decidim.configure do |config|
         parent_scope = Decidim::Scope.where("name->>'ca' = 'Ciutat'").first
 
         Decidim::Scope.where(parent: parent_scope).pluck(:code).each do |code|
-          options.attribute :"scope_code_#{code}", type: :boolean
+          options.attribute :"scope_code_#{code}", type: :boolean, required: false
         end
       end
     end
