@@ -30,7 +30,11 @@ Decidim.configure do |config|
       auth.time_between_renewals = 1.day
 
       auth.options do |options|
-        options.attribute :scope_id, type: :integer, required: false
+        parent_scope = Decidim::Scope.where("name->>'ca' = 'Ciutat'").first
+
+        Decidim::Scope.where(parent: parent_scope).pluck(:code).each do |code|
+          options.attribute :"scope_code_#{code}", type: :boolean
+        end
       end
     end
   end

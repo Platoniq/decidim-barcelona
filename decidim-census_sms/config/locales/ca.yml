@@ -15,6 +15,17 @@ ca:
       census_sms_authorization_handler:
         explanation: El padró + SMS #TODO
         name: El padró + SMS #TODO
+        fields:
+          scope_code_01: Districte 1
+          scope_code_02: Districte 2
+          scope_code_03: Districte 3
+          scope_code_04: Districte 4
+          scope_code_05: Districte 5
+          scope_code_06: Districte 6
+          scope_code_07: Districte 7
+          scope_code_08: Districte 8
+          scope_code_09: Districte 9
+          scope_code_10: Districte 10
     census_sms:
       verification:
         authorizations:
