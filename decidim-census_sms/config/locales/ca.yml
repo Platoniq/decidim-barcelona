@@ -16,15 +16,15 @@ ca:
         explanation: El padró + SMS #TODO
         name: El padró + SMS #TODO
         fields:
-          scope_code_01: Districte 1 #TODO
-          scope_code_02: Districte 2 #TODO
-          scope_code_03: Districte 3 #TODO
-          scope_code_04: Districte 4 #TODO
-          scope_code_05: Districte 5 #TODO
-          scope_code_06: Districte 6 #TODO
-          scope_code_07: Districte 7 #TODO
-          scope_code_08: Districte 8 #TODO
-          scope_code_09: Districte 9 #TODO
+          scope_code_1: Districte 1 #TODO
+          scope_code_2: Districte 2 #TODO
+          scope_code_3: Districte 3 #TODO
+          scope_code_4: Districte 4 #TODO
+          scope_code_5: Districte 5 #TODO
+          scope_code_6: Districte 6 #TODO
+          scope_code_7: Districte 7 #TODO
+          scope_code_8: Districte 8 #TODO
+          scope_code_9: Districte 9 #TODO
           scope_code_10: Districte 10 #TODO
     census_sms:
       verification:
