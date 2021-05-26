@@ -9,7 +9,8 @@ ca:
         mobile_phone_number: Número de telèfon mòbil
         postal_code: Codi postal
         scope_id: Districte
-        tos_acceptance: En registrar-te acceptes els <a class="link" href="%{tos_path}" target="_blank">Termes i Condicions</a>
+        tos_acceptance: Accepto els Termes i Condicions
+        tos_acceptance_label: En registrar-te acceptes els <a class="link" href="%{tos_path}" target="_blank">Termes i Condicions</a>
   decidim:
     authorization_handlers:
       census_sms_authorization_handler:

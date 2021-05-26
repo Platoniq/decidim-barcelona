@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="row">
     <div class="row">
-      <div class="columns large-4 large-centered text-center page-title">
+      <div class="columns large-12 large-centered text-center page-title">
         <h1><%= t(".title") %></h1>
       </div>
     </div>
@@ -26,20 +26,23 @@
           </div>
 
           <div class="field">
-            <%= form.phone_field :mobile_phone_number %>
-          </div>
-
-          <div class="field">
             <% parent_scope = Decidim::Scope.where("name->>'ca' = 'Ciutat'").first %>
             <%= form.collection_select :scope_id, current_organization.scopes.where(parent: parent_scope), :id, ->(scope){ translated_attribute(scope.name) }, prompt: t(".scope_prompt") %>
           </div>
 
           <div class="field">
-            <%= form.check_box :tos_acceptance, label: t("activemodel.attributes.authorization.tos_acceptance", tos_path: tos_path) %>
+            <%= form.phone_field :mobile_phone_number %>
+          </div>
+
+          <div class="field">
+            <%= form.label :tos_acceptance do %>
+              <%= form.check_box :tos_acceptance, label: false %>
+              <%== t("activemodel.attributes.authorization.tos_acceptance_label", tos_path: tos_path) %>
+            <% end %>
           </div>
 
           <%= form.hidden_field :handler_name %>
-          
+
           <div class="actions mt-s">
             <%= form.submit t(".send"), class: "button expanded", "data-disable-with" => "#{t('.send')}..." %>
           </div>
