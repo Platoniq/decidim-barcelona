@@ -46,12 +46,7 @@ module Decidim
           Decidim::Verifications::ConfirmUserAuthorization.call(authorization, @form, session) do
             on(:ok) do
               flash[:notice] = t("authorizations.update.success", scope: "decidim.census_sms.verification")
-
-              if redirect_url
-                redirect_to redirect_url
-              else
-                redirect_to decidim_verifications.authorizations_path
-              end
+              redirect_to decidim_verifications.authorizations_path
             end
 
             on(:invalid) do
