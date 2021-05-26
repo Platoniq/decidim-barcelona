@@ -23,7 +23,8 @@ module Decidim
         def metadata
           super.merge(
             tos_accepted_at: Time.now,
-            mobile_phone_number: mobile_phone_number_hash
+            mobile_phone_number: mobile_phone_number_hash,
+            "scope_code_#{scope.code}": true
           )
         end
 
