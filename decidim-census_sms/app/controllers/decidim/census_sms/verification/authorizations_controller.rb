@@ -17,7 +17,7 @@ module Decidim
         def create
           enforce_permission_to :create, :authorization, authorization: authorization
 
-          @form = AuthorizationForm.from_params(params.merge(user: current_user))
+          @form = AuthorizationForm.from_params(create_params)
 
           Decidim::Verifications::PerformAuthorizationStep.call(authorization, @form) do
             on(:ok) do
@@ -72,23 +72,21 @@ module Decidim
 
         private
 
+        def create_params
+          params[:authorization].merge(user: current_user, date_of_birth: date_of_birth)
+        end
+        
+        def date_of_birth
+          year, month, day = params[:authorization].select { |k, v| k.include?("date_of_birth") }.values.reverse.map(&:to_i)
+        
+          Date.new(year, month, day)
+        end
+
         def authorization
           @authorization ||= Decidim::Authorization.find_or_initialize_by(
             user: current_user,
             name: "census_sms"
           )
-        end
-
-        def handler
-          @handler ||= Decidim::AuthorizationHandler.handler_for(handler_name, handler_params)
-        end
-
-        def handler_params
-          (params[:authorization_handler] || {}).merge(user: current_user)
-        end
-
-        def handler_name
-          params[:handler] || params.dig(:authorization_handler, :handler_name)
         end
 
         def tos_path
