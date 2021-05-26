@@ -26,6 +26,7 @@ Decidim.configure do |config|
 
     Decidim::Verifications.register_workflow(:census_sms_authorization_handler) do |auth|
       auth.engine = Decidim::CensusSms::Verification::Engine
+      auth.action_authorizer = "Decidim::CensusSms::Verification::ActionAuthorizer"
       auth.renewable = true
       auth.time_between_renewals = 1.day
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-$LOAD_PATH.push File.expand_path("../lib", __FILE__)
+
+$LOAD_PATH.push File.expand_path("lib", __dir__)
 
 Gem::Specification.new do |s|
   s.name        = "decidim-census_sms"

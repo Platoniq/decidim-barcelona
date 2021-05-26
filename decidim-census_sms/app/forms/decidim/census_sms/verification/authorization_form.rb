@@ -24,7 +24,7 @@ module Decidim
           super.merge(
             tos_accepted_at: Time.now,
             mobile_phone_number: mobile_phone_number_hash,
-            "scope_code_#{scope.code}": true
+            scope_code: scope.code
           )
         end
 

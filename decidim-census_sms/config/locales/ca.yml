@@ -26,6 +26,7 @@ ca:
           scope_code_8: Districte 8 #TODO
           scope_code_9: Districte 9 #TODO
           scope_code_10: Districte 10 #TODO
+          scope_code: Districte
     census_sms:
       verification:
         authorizations:

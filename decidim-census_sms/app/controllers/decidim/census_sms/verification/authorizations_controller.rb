@@ -75,10 +75,10 @@ module Decidim
         def create_params
           params[:authorization].merge(user: current_user, date_of_birth: date_of_birth)
         end
-        
+
         def date_of_birth
-          year, month, day = params[:authorization].select { |k, v| k.include?("date_of_birth") }.values.reverse.map(&:to_i)
-        
+          year, month, day = params[:authorization].select { |k, _v| k.include?("date_of_birth") }.values.reverse.map(&:to_i)
+
           Date.new(year, month, day)
         end
 
