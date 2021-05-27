@@ -25,6 +25,7 @@ module Decidim
               authorization_method = Decidim::Verifications::Adapter.from_element(authorization.name)
               redirect_to authorization_method.resume_authorization_path(redirect_url: redirect_url)
             end
+
             on(:invalid) do
               flash.now[:alert] = t("authorizations.create.error", scope: "decidim.census_sms.verification")
               render :new
@@ -52,6 +53,27 @@ module Decidim
             on(:invalid) do
               flash.now[:alert] = t("authorizations.update.error", scope: "decidim.census_sms.verification")
               render :edit
+            end
+          end
+        end
+
+        def reset
+          enforce_permission_to :update, :authorization, authorization: authorization
+
+          @form = ResetForm.from_params(params)
+
+          return unless request.post?
+
+          ResetCode.call(@form, authorization) do
+            on(:ok) do
+              flash[:notice] = t("authorizations.reset.success", scope: "decidim.census_sms.verification")
+              authorization_method = Decidim::Verifications::Adapter.from_element(authorization.name)
+              redirect_to authorization_method.resume_authorization_path(redirect_url: redirect_url)
+            end
+
+            on(:invalid) do
+              flash.now[:alert] = t("authorizations.reset.error", scope: "decidim.census_sms.verification")
+              render :reset
             end
           end
         end

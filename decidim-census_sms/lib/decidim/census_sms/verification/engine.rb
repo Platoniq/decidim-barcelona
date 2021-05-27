@@ -12,6 +12,8 @@ module Decidim
 
         routes do
           resource :authorizations, only: [:new, :create, :edit, :update, :destroy], as: :authorization do
+            get :reset, on: :member
+            post :reset, on: :member
             get :renew, on: :collection
           end
           root to: "authorizations#new"
