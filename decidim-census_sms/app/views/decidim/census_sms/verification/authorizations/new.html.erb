@@ -1,13 +1,11 @@
 <div class="wrapper">
   <div class="row">
-    <div class="row">
-      <div class="columns large-12 large-centered text-center page-title">
-        <h1><%= t(".title") %></h1>
-      </div>
+    <div class="columns large-6 large-centered">
+      <h1 class="text-center page-title"><%= t(".title") %></h1>
     </div>
-
-    <div class="row">
-      <div class="columns large-4 medium-centered">
+    
+    <div class="card columns large-6 large-centered">
+      <div class="card__content">
         <%= decidim_form_for(@form, url: authorization_path) do |form| %>
           <div class="field">
             <%= form.select :document_type, form.object.census_document_types, prompt: true %>

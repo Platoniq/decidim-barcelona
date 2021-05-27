@@ -12,6 +12,8 @@
 
     .label-required {
       width: 0.5rem;
+      grid-column: 3;
+      justify-self: flex-end;
     }
 
     .form-error {
