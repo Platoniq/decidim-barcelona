@@ -60,8 +60,7 @@ module Decidim
       end
 
       def allowed_to_update_ephemeral_participant?
-        user && user == context[:current_user] &&
-          Decidim::Verifications::Conflict.where(current_user: current_user).none?
+        user && user == context[:current_user] && user.verifiable_ephemeral_participant?
       end
 
       def update_profile?
@@ -71,13 +70,11 @@ module Decidim
       end
 
       def allowed_to_update_profile?
-        create_authorization? && (not user.verified_ephemeral_participant?)
+        verify_ephemeral_participant_path? && (not user.verified_ephemeral_participant?)
       end
 
-      # TODO: handle authorization with engines
-      def create_authorization?
-        context[:request].path == decidim_verifiations.new_authorization_path && context[:request].method == "GET" ||
-          context[:request].path == decidim_verifiations.authorizations_path && context[:request].method == "POST"
+      def verify_ephemeral_participant_path?
+        Decidim::EphemeralParticipation::InformingRecognizer.new(context[:request], user).verify_ephemeral_participant_path?
       end
 
       def decidim_verifiations

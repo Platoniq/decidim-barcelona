@@ -28,7 +28,10 @@ Decidim::Verifications.register_workflow(:census) do |workflow|
 end
 ```
 
-**IMPORANT** The module assumes the verification method is making users accept the TOS version.
+**IMPORANT**
+The following assumptions are made:
+- The verification workflow is responsible for making users accept the TOS.
+- The verification workflow is redirecting to `authorizations_path` or `redirect_url` after creating the authorization.
 
 ## Contributing
 

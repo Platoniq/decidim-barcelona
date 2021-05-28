@@ -14,7 +14,7 @@ module Decidim
         return broadcast(:invalid) unless valid_params?
 
         @user.invalidate_all_sessions!
-        @user.destroy if destroy_user?
+        @user.destroy! if destroy_user?
         sign_out(@user)
 
         broadcast(:ok)

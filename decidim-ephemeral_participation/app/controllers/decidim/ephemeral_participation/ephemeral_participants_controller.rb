@@ -8,7 +8,7 @@ module Decidim
       def create
         enforce_permission_to(:create, :ephemeral_participant)
 
-        CreateEphemeralParticipant.call(request, current_user) do
+        Decidim::EphemeralParticipation::CreateEphemeralParticipant.call(request, current_user) do
           on(:ok) do |authorization_path|
             flash[:notice] = I18n.t("create", scope: "decidim.ephemeral_participation.ephemeral_participants")
 
@@ -16,7 +16,7 @@ module Decidim
           end
 
           on(:invalid) do
-            render template: "decidim/errors/not_found", locals: { root_path: decidim.root_path }
+            render template: "decidim/errors/not_found", locals: { root_path: decidim_root_path }
           end
         end
       end
@@ -34,7 +34,7 @@ module Decidim
 
         @form = form(EphemeralParticipantForm).from_params(params)
 
-        UpdateEphemeralParticipant.call(request, current_user, @form) do
+        Decidim::EphemeralParticipation::UpdateEphemeralParticipant.call(request, current_user, @form) do
           on(:ok) do
             flash[:notice] = I18n.t("update.success", scope: "decidim.ephemeral_participation.ephemeral_participants")
 
@@ -52,19 +52,19 @@ module Decidim
       def destroy
         enforce_permission_to(:destroy, :ephemeral_participant, current_user: current_user)
 
-        DestroyEphemeralParticipant.call(request, current_user) do
+        Decidim::EphemeralParticipation::DestroyEphemeralParticipant.call(request, current_user) do
           on(:ok) do
             flash[:notice] = I18n.t("destroy", scope: "decidim.ephemeral_participation.ephemeral_participants")
 
-            redirect_to(decidim.root_path)
+            redirect_to(decidim_root_path)
           end
         end
       end
 
       private
 
-      def decidim
-        Decidim::Core::Engine.routes.url_helpers
+      def decidim_root_path
+        Decidim::Core::Engine.routes.url_helpers.root_path
       end
     end
   end
