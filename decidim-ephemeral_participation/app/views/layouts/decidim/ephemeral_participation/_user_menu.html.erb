@@ -3,11 +3,15 @@
     t(
       "remaining",
       scope: "decidim.ephemeral_participation.user_menu",
-      remaining: ephemeral_participant_session_remaining_time_in_minutes,
+      remaining: (
+        Decidim::EphemeralParticipation::SessionPresenter
+        .new(current_user, self)
+        .ephemeral_participant_session_remaining_time_in_minutes
+      )
     )
   %>
 </li>
-<% if Decidim::Verifications::Conflict.where(current_user: current_user).none? %>
+<% if current_user.verifiable_ephemeral_participant? %>
   <li>
     <%=
       link_to(

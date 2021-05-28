@@ -17,7 +17,7 @@ module Decidim
         end
 
         def duplicates(where_clause)
-          DuplicatedUsers.new(
+          Decidim::EphemeralParticipation::DuplicatedUsers.new(
             organization: current_user.organization,
             where_clause: where_clause,
           ).query

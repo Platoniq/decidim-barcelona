@@ -28,6 +28,8 @@ ca:
         unauthorized_link: Completa el teu registre aquí.
         unverified: "Per poder participar, cal que estiguis verificada: %{link}"
         unverified_link: Completa el procés de verificació aquí.
+        verified: "Completa el teu registre %{link}"
+        verified_link: aquí.
       login_modal:
         button: Vull participar sense registrar-me
         help: Fes servir aquesta opció per una particiació puntual
@@ -40,6 +42,7 @@ ca:
         destroy: S'ha cancel·lat la participació sense registre
         submit: Envia
         title: Completa el teu perfil d'usuari per simplificar la teva participació en el futur
+        unverifiable: unverifiable ca
     components:
       budgets:
         settings:

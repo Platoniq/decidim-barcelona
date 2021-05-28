@@ -16,7 +16,7 @@ module Decidim
         private
 
         def new_permissions
-          EphemeralParticipationPermissions.new(user, permission_action, context).permissions
+          Decidim::EphemeralParticipation::EphemeralParticipationPermissions.new(user, permission_action, context).permissions
         end
       end
     end
