@@ -6,7 +6,7 @@ module Decidim
       extend ActiveSupport::Concern
 
       included do
-        # TEMPORARY FIX TO RENDER FORM ON ERROR
+        # TEMPORARY OVERRIDE TO RENDER FORM ON ERROR (BUG IN DECIDIM)
         # https://github.com/decidim/decidim/blob/00bad01ccfa95473fd2d7b2f2cb1919623295ba3/decidim-admin/app/controllers/decidim/admin/conflicts_controller.rb#L40
         def update
           conflict = Decidim::Verifications::Conflict.find(params[:id])

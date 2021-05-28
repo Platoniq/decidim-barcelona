@@ -28,6 +28,8 @@ en:
         unauthorized_link: Finish your registration here.
         unverified: "You need to be verified in order tor participate: %{link}"
         unverified_link: Complete the verification process here.
+        verified: "Finish your registration %{link}"
+        verified_link: here.
       login_modal:
         button: I want to participate without registering
         help: Use this option for a one-time participation
@@ -40,6 +42,7 @@ en:
         destroy: en.decidim.ephemeral_participation.ephemeral_participants.destroy
         submit: Send
         title: Complete your user profile for easily future participation
+        unverifiable: unverifiable en
     components:
       budgets:
         settings:

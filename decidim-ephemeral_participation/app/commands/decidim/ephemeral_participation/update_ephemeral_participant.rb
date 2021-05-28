@@ -38,7 +38,7 @@ module Decidim
         @user.password_confirmation = @form.password_confirmation
 
         @user.skip_reconfirmation!
-        @user.save(validate: false)
+        @user.save!
         @user.send(:after_confirmation)
       end
 

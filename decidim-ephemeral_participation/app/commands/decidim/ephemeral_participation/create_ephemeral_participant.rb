@@ -21,19 +21,19 @@ module Decidim
       private
 
       def valid_params?
-        @request.is_a?(ActionDispatch::Request) && component_id.present? && redirect_url.present?
+        @request.is_a?(ActionDispatch::Request) && component_id.present? && ephemeral_participation_path.present?
       end
 
       def component_id
         @request.params[:component_id]
       end
 
-      def redirect_url
-        @request.params[:redirect_url]
+      def ephemeral_participation_path
+        @request.params[:ephemeral_participation_path]
       end
 
       def new_ephemeral_participant
-        Decidim::User.create(
+        Decidim::User.new(
           organization: component.organization,
           managed: true,
           tos_agreement: true,
@@ -42,14 +42,22 @@ module Decidim
               authorization_name: authorization_name,
               component_id: component.id,
               permissions:  component.ephemeral_participation_permissions,
-              redirect_url: redirect_url
+              request_path: ephemeral_participation_path
             }
           }
-        )
+        ).tap do |user|
+          user.nickname = nicknamize(user)
+          user.save!
+        end
+      end
+
+      # nickname is needed to ensure some links are not broken
+      def nicknamize(user)
+        Decidim::UserBaseEntity.nicknamize(user.name, organization: user.organization)
       end
 
       def authorization_path
-        adapter.root_path(redirect_url: redirect_url)
+        adapter.root_path(redirect_url: ephemeral_participation_path)
       end
 
       def adapter
