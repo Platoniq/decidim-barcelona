@@ -14,7 +14,7 @@ describe "Census + SMS authorization", type: :system, perform_enqueued: true, wi
   end
 
   let(:authorization_name) { "El padró + SMS" }
-  let(:authorizations) { ["census_sms_authorization_handler"] }
+  let(:authorizations) { {"census_sms_authorization_handler" => {"allow_ephemeral_participation" => true}} }
   let(:code) { user_authorization.verification_metadata["verification_code"] }
   let(:user_authorization) { Decidim::Authorization.find_by(user: user, name: "census_sms_authorization_handler") }
 
